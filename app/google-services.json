@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "57394046880",
+    "firebase_url": "https://facey-b5d84.firebaseio.com",
+    "project_id": "facey-b5d84",
+    "storage_bucket": "facey-b5d84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57394046880:android:99763bc08ce0f95eaf66c5",
+        "android_client_info": {
+          "package_name": "com.example.facey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57394046880-fjjmlmmfatpfo8ugqn8pi9f2q18l6qmt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.facey",
+            "certificate_hash": "1ba82b375d9b3203ee06ee1de1131b8248edc98c"
+          }
+        },
+        {
+          "client_id": "57394046880-7uugqhg3cb6rtiqls8fm2tbcdn4vt5k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOlcAfW33ARjpuIcl9Zkf-B-v0-sEQDWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57394046880-7uugqhg3cb6rtiqls8fm2tbcdn4vt5k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
