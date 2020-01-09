@@ -24,11 +24,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Log.d("Firebase", currentUser.getDisplayName());
-        if(currentUser.getUid().length() >1){
+        if(currentUser != null){
+
+            Log.d("Firebase", currentUser.getDisplayName());
             startActivity(new Intent(this, AttendenceSelect.class));
+            finish();
         }else{
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
     }
 }
