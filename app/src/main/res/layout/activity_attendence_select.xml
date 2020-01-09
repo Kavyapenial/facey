@@ -23,97 +23,137 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.128" />
 
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S1"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="144dp"
         android:layout_height="94dp"
-        android:layout_marginStart="44dp"
-        android:height="20"
-        android:text="@string/button"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        android:text="S1"
+        android:textSize="16dp"
+        android:visibility="visible"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.273" />
+        app:layout_constraintVertical_bias="0.321"
+        tools:text="S1"
+        tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S3"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S3"
+        android:textSize="16dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
+        app:layout_constraintVertical_bias="0.499" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S5"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S5"
+        android:textSize="16dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.675" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S7"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S7"
+        android:textSize="16dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintVertical_bias="0.85" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="260dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S8"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S8"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        android:visibility="visible"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
+        app:layout_constraintVertical_bias="0.85"
+        tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="136dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S6"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S6"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
+        app:layout_constraintVertical_bias="0.675" />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S4"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S4"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846" />
+        app:layout_constraintVertical_bias="0.499" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S2"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S2"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.897" />
+        app:layout_constraintVertical_bias="0.321" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

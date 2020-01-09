@@ -11,4 +11,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="button">Button</string>
     <string name="semester">SEMESTER</string>
+    <string name="s1">S1</string>
 </resources>
