@@ -5,4 +5,151 @@
     android:id="@+id/attendance3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AttendenceSelect"/>
+    <TextView
+        android:id="@+id/sem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundTint="#000777"
+        android:text="@string/semester"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.128" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S1"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        android:text="S1"
+        android:textSize="16dp"
+        android:visibility="visible"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321"
+        tools:text="S1"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S3"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S3"
+        android:textSize="16dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S5"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S5"
+        android:textSize="16dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S7"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S7"
+        android:textSize="16dp"
+        android:layout_marginStart="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S8"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S8"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        android:visibility="visible"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S6"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S6"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S4"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S4"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/S2"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="144dp"
+        android:layout_height="94dp"
+        android:text="S2"
+        android:textSize="16dp"
+        android:layout_marginEnd="32dp"
+        android:height="@dimen/material_height"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.321" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
