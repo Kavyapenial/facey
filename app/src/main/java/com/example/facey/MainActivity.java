@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private TextView profileName;
-    private MaterialButton takeAttendance;
+    private MaterialButton takeAttendance,viewAttendance;
     private FirebaseAuth mAuth;
     private  FirebaseUser currentUser;
 
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         profileName =  findViewById(R.id.profileName);
         takeAttendance = findViewById(R.id.takeAttendence);
+        viewAttendance = findViewById(R.id.viewAttendence);
 
         if(currentUser != null)
             profileName.setText(currentUser.getDisplayName());
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
+            }
+        });
+        viewAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), Report.class));
             }
         });
     }
