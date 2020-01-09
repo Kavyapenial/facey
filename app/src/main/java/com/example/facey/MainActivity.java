@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton takeAttendance;
     private FirebaseAuth mAuth;
     private  FirebaseUser currentUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
