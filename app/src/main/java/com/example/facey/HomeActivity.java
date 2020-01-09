@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         if(currentUser != null){
 
             Log.d("Firebase", currentUser.getDisplayName());
-            startActivity(new Intent(this, AttendenceSelect.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }else{
             startActivity(new Intent(this, LoginActivity.class));
