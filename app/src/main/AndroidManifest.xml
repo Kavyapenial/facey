@@ -9,9 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppThemeNoActionBar"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".AttendenceSelect" />
         <activity android:name=".HomeActivity">
