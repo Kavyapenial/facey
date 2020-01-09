@@ -25,7 +25,7 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance_capture);
 
         imageView = findViewById(R.id.imageView);
-        captureButton = findViewById(R.id.capture);
+        captureButton = findViewById(R.id.captureButton);
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.facey">
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
@@ -13,13 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AttendanceCaptureActivity"/>
+        <activity android:name=".Report"/>
+        <activity android:name=".AttendanceCaptureActivity" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".MainActivity" android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".AttendenceSelect" />
-        <activity android:name=".HomeActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".AttendenceSelect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
