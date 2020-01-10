@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "57394046880-fjamhb87q6a7p99jh9tal4mlfsel5ssf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.facey",
+            "certificate_hash": "4a28a397a8af7a71eadcce821646a60c604a60b2"
+          }
+        },
+        {
           "client_id": "57394046880-fjjmlmmfatpfo8ugqn8pi9f2q18l6qmt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
