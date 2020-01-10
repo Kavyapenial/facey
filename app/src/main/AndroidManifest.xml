@@ -23,8 +23,8 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".AttendenceSelect">
+        <activity android:name=".AttendenceSelect" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
