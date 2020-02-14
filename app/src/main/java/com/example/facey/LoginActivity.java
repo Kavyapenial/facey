@@ -8,7 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.facey.config.DataManager;
+import com.example.facey.config.Session;
+import com.example.facey.interfaces.RetrofitCallBack;
+import com.example.facey.models.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,6 +30,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -85,21 +92,57 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private HashMap<String, String> getEmailParams(String email) {
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("email", email);
+        return hashMap;
+    }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            final GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
             Log.d(TAG, "Account : "+account.getEmail());
 
+            DataManager.getDataManager().verifyEmail(getEmailParams(account.getEmail()), new RetrofitCallBack<Auth>() {
+                @Override
+                public void Success(Auth data) {
+                    if (data == null)
+                        return;
+                    Session.setAccessToken(data.getAccessToken());
+                    Session.setName(data.getName());
+                    Session.setDesignation(data.getDesignation());
+                    Session.setEmail(data.getEmail());
+                    Session.setUserVerification(true);
+                    DataManager.getDataManager().init(LoginActivity.this);
+                    Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                    firebaseAuthWithGoogle(account);
+                }
+
+                @Override
+                public void Failure(String error) {
+                    Toast.makeText(LoginActivity.this, "Cant find teacher", Toast.LENGTH_SHORT).show();
+                    googleSignInClient.signOut().addOnCompleteListener(LoginActivity.this, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Log.d("LoginActivity", "Login failed");
+                        }
+                    });
+
+                }
+            });
+
             // TODO send the email address to the server and verify the user then only call the firebase auth function
-            firebaseAuthWithGoogle(account);
+//
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 
@@ -123,6 +166,7 @@ public class LoginActivity extends AppCompatActivity {
     
                         } else {
                             // If sign in fails, display a message to the user.
+                            Toast.makeText(getApplicationContext(), "Something went wrong plese try again", Toast.LENGTH_LONG).show();
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                         }
 
