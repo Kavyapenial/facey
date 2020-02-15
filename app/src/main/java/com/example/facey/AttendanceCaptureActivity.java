@@ -22,7 +22,7 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView  imageView;
-    private AutoCompleteTextView batchAutoCompleteTextView, subjeAutoCompleteTextView;
+    private AutoCompleteTextView branchAutoCompleteTextView,batchAutoCompleteTextView, subjectAutoCompleteTextView;
 
 
     private Button captureButton;
@@ -33,16 +33,32 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance_capture);
 
         captureButton = findViewById(R.id.captureButton);
+        branchAutoCompleteTextView =  findViewById(R.id.branch);
         batchAutoCompleteTextView =  findViewById(R.id.batch);
-        subjeAutoCompleteTextView =  findViewById(R.id.subject);
+        subjectAutoCompleteTextView =  findViewById(R.id.subject);
+
+        final ArrayAdapter<String> branchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
+        branchAdapter.add("CSE");
+        branchAdapter.add("MECH");
+        branchAdapter.add("EEE");
 
         final ArrayAdapter<String> batchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
         batchAdapter.add("Batch 1");
         batchAdapter.add("Batch 2");
         batchAdapter.add("Batch 3");
+        batchAdapter.add("Batch 4");
 
+        final ArrayAdapter<String> subjectAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
+        subjectAdapter.add("Sub 1");
+        subjectAdapter.add("Sub 2");
+        subjectAdapter.add("Sub 3");
+
+        branchAutoCompleteTextView.setAdapter(branchAdapter);
         batchAutoCompleteTextView.setAdapter(batchAdapter);
-        subjeAutoCompleteTextView.setAdapter(batchAdapter);
+        subjectAutoCompleteTextView.setAdapter(subjectAdapter);
+
+        batchAutoCompleteTextView.setEnabled(false);
+        subjectAutoCompleteTextView.setEnabled(false);
 
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +67,36 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
             }
         });
 
+        branchAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), branchAdapter.getItem(position), Toast.LENGTH_LONG).show();
+                batchAutoCompleteTextView.setEnabled(true);
+                subjectAutoCompleteTextView.setEnabled(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         batchAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), batchAdapter.getItem(position), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        subjectAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), subjectAdapter.getItem(position), Toast.LENGTH_LONG).show();
             }
 
             @Override

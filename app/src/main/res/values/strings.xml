@@ -12,4 +12,5 @@
     <string name="button">Button</string>
     <string name="semester">SEMESTER</string>
     <string name="s1">S1</string>
+    <string name="action_settings">Settings</string>
 </resources>
