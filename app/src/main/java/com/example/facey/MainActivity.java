@@ -8,6 +8,7 @@ import android.view.View;
 
 import android.widget.TextView;
 
+import com.example.facey.config.Session;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         logout = findViewById(R.id.logout);
 
         if(currentUser != null)
-            profileName.setText(currentUser.getDisplayName());
+            profileName.setText(Session.getName());
 
         takeAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
