@@ -16,7 +16,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.facey.config.DataManager;
+import com.example.facey.interfaces.RetrofitCallBack;
+import com.example.facey.models.Branch;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
 
 public class AttendanceCaptureActivity extends AppCompatActivity {
 
@@ -24,6 +29,8 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
     private ImageView  imageView;
     private AutoCompleteTextView branchAutoCompleteTextView,batchAutoCompleteTextView, subjectAutoCompleteTextView;
 
+    private ArrayList<Branch> branches;
+    ArrayAdapter<String> branchAdapter;
 
     private Button captureButton;
 
@@ -37,10 +44,7 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         batchAutoCompleteTextView =  findViewById(R.id.batch);
         subjectAutoCompleteTextView =  findViewById(R.id.subject);
 
-        final ArrayAdapter<String> branchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-        branchAdapter.add("CSE");
-        branchAdapter.add("MECH");
-        branchAdapter.add("EEE");
+        branchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
 
         final ArrayAdapter<String> batchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
         batchAdapter.add("Batch 1");
@@ -104,7 +108,31 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
 
             }
         });
+
+        getBranchs();
     }
+
+
+    private void getBranchs(){
+
+        DataManager.getDataManager().getBranchs(new RetrofitCallBack<ArrayList<Branch>>() {
+            @Override
+            public void Success(ArrayList<Branch> data) {
+                branches = data;
+                for(int i =0; i< branches.size(); i++)
+                    branchAdapter.add(branches.get(i).getName());
+                Toast.makeText(getApplicationContext(), "Data recieved", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void Failure(String error) {
+
+            }
+        });
+
+    }
+
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

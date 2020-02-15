@@ -117,6 +117,10 @@ public class LoginActivity extends AppCompatActivity {
                     Session.setEmail(data.getEmail());
                     Session.setUserVerification(true);
                     DataManager.getDataManager().init(LoginActivity.this);
+
+
+
+
                     Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                     firebaseAuthWithGoogle(account);
                 }
