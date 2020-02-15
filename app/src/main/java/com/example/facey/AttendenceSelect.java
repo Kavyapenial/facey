@@ -32,49 +32,49 @@ public class AttendenceSelect extends AppCompatActivity {
         S1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         S8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), MainActivity.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
     }

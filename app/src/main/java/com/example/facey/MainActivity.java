@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView profileName;
 
-    private MaterialButton takeAttendance,viewAttendance;
+    private MaterialButton takeAttendance,viewAttendance,logout;
     private FirebaseAuth mAuth;
     private  FirebaseUser currentUser;
 
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         profileName =  findViewById(R.id.profileName);
         takeAttendance = findViewById(R.id.takeAttendence);
         viewAttendance = findViewById(R.id.viewAttendence);
+        logout = findViewById(R.id.logout);
 
         if(currentUser != null)
             profileName.setText(currentUser.getDisplayName());
@@ -41,13 +42,19 @@ public class MainActivity extends AppCompatActivity {
         takeAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
+                startActivity(new Intent(getApplication(), AttendenceSelect.class));
             }
         });
         viewAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(), Report.class));
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(), LoginActivity.class));
             }
         });
     }
