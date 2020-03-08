@@ -11,10 +11,10 @@ public class Batch {
     int year;
 
     @SerializedName("branch")
-    String branch;
+    Branch branch;
 
     @SerializedName("sem")
-    int sem;
+    Semester sem;
 
 
     public int getId(){return  id;}
@@ -24,10 +24,10 @@ public class Batch {
     public int getYear(){return  year;}
     public void setYear(int year){this.year = year;}
 
-    public String getBranch(){return  branch;}
-    public void setBranch(String branch){this.branch = branch;}
+    public Branch getBranch(){return  branch;}
+    public void setBranch(Branch branch){this.branch = branch;}
 
-    public int getSem(){return  sem;}
-    public void setSem(int sem){this.sem = sem;}
+    public Semester getSem(){return  sem;}
+    public void setSem(Semester sem){this.sem = sem;}
 
 }

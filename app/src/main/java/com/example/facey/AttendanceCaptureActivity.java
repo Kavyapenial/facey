@@ -13,13 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.facey.config.DataManager;
 import com.example.facey.interfaces.RetrofitCallBack;
+import com.example.facey.models.Batch;
 import com.example.facey.models.Branch;
+import com.example.facey.models.Subject;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -28,11 +29,18 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView  imageView;
     private AutoCompleteTextView branchAutoCompleteTextView,batchAutoCompleteTextView, subjectAutoCompleteTextView;
+    private TextInputLayout branchTextInputLayout, batchTextInputLayout, subjeTextInputLayout;
+    private Button captureButton;
 
     private ArrayList<Branch> branches;
-    ArrayAdapter<String> branchAdapter;
+    private ArrayList<Batch> batches;
+    private ArrayList<Subject> subjects;
+    private ArrayAdapter<String> branchAdapter;
+    private ArrayAdapter<String> batchAdapter;
+    private ArrayAdapter<String> subjectAdapter;
 
-    private Button captureButton;
+    private int batchId = 0, subjectId = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,68 +52,62 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         batchAutoCompleteTextView =  findViewById(R.id.batch);
         subjectAutoCompleteTextView =  findViewById(R.id.subject);
 
-        branchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
+        batchTextInputLayout = findViewById(R.id.batch_container);
+        branchTextInputLayout = findViewById(R.id.branch_container);
+        subjeTextInputLayout = findViewById(R.id.subject_container);
 
-        final ArrayAdapter<String> batchAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-        batchAdapter.add("Batch 1");
-        batchAdapter.add("Batch 2");
-        batchAdapter.add("Batch 3");
-        batchAdapter.add("Batch 4");
-
-        final ArrayAdapter<String> subjectAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-        subjectAdapter.add("Sub 1");
-        subjectAdapter.add("Sub 2");
-        subjectAdapter.add("Sub 3");
+        branchAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
+        batchAdapter= new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
+        subjectAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
 
         branchAutoCompleteTextView.setAdapter(branchAdapter);
         batchAutoCompleteTextView.setAdapter(batchAdapter);
         subjectAutoCompleteTextView.setAdapter(subjectAdapter);
 
-        batchAutoCompleteTextView.setEnabled(false);
-        subjectAutoCompleteTextView.setEnabled(false);
+        batchTextInputLayout.setEnabled(false);
+        subjeTextInputLayout.setEnabled(false);
 
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                if(subjectId != 0 && batchId != 0){
+                    dispatchTakePictureIntent();
+                }
             }
         });
 
-        branchAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), branchAdapter.getItem(position), Toast.LENGTH_LONG).show();
-                batchAutoCompleteTextView.setEnabled(true);
-                subjectAutoCompleteTextView.setEnabled(true);
-            }
 
+        branchAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-        });
+                batchTextInputLayout.setEnabled(false);
+                subjeTextInputLayout.setEnabled(false);
 
-        batchAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), batchAdapter.getItem(position), Toast.LENGTH_LONG).show();
-            }
+                getSubjects(branches.get(position).getId());
+                getBatches(branches.get(position).getId());
+                branchTextInputLayout.clearFocus();
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                // Clear the previously selected value
+                batchAutoCompleteTextView.setText("", false);
+                subjectAutoCompleteTextView.setText("", false);
 
             }
         });
 
-        subjectAutoCompleteTextView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        batchAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), subjectAdapter.getItem(position), Toast.LENGTH_LONG).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                batchTextInputLayout.clearFocus();
+                batchId = batches.get(position).getId();
             }
+        });
 
+        subjectAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                subjeTextInputLayout.clearFocus();
+                subjectId = subjects.get(position).getId();
             }
         });
 
@@ -119,9 +121,9 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
             @Override
             public void Success(ArrayList<Branch> data) {
                 branches = data;
+                batchAdapter.clear();
                 for(int i =0; i< branches.size(); i++)
                     branchAdapter.add(branches.get(i).getName());
-                Toast.makeText(getApplicationContext(), "Data recieved", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -132,6 +134,49 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
 
     }
 
+
+    private void getSubjects(int branchId){
+        DataManager.getDataManager().getSubjects(branchId, new RetrofitCallBack<ArrayList<Subject>>() {
+            @Override
+            public void Success(ArrayList<Subject> data) {
+                subjects = data;
+                subjectAdapter.clear();
+                if(data.size() == 0)
+                    subjeTextInputLayout.setEnabled(false);
+                else
+                    subjeTextInputLayout.setEnabled(true);
+                for (int i=0; i< subjects.size(); i++)
+                    subjectAdapter.add(subjects.get(i).getSubjectName());
+            }
+
+            @Override
+            public void Failure(String error) {
+
+            }
+        });
+    }
+
+
+    private void getBatches(int branchId){
+        DataManager.getDataManager().getBatches(branchId, new RetrofitCallBack<ArrayList<Batch>>() {
+            @Override
+            public void Success(ArrayList<Batch> data) {
+                batches = data;
+                batchAdapter.clear();
+                if(data.size() == 0)
+                    batchTextInputLayout.setEnabled(false);
+                else
+                    batchTextInputLayout.setEnabled(true);
+                for (int i=0; i< batches.size(); i++)
+                    batchAdapter.add(batches.get(i).getYear()+"");
+            }
+
+            @Override
+            public void Failure(String error) {
+
+            }
+        });
+    }
 
 
     private void dispatchTakePictureIntent() {

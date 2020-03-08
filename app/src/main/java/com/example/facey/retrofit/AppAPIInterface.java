@@ -34,7 +34,7 @@ public interface AppAPIInterface {
 
 
     @GET("college/batchs/{branchId}")
-    Call<ArrayList<Batch>> getBatch(@Path("branchId") int branchId);
+    Call<ArrayList<Batch>> getBatches(@Path("branchId") int branchId);
 
 
     @GET("college/subjects/{branchId}")

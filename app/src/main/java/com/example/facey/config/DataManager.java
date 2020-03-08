@@ -83,8 +83,8 @@ public class DataManager {
 
     }
 
-    public void getBatch(int branchId, final RetrofitCallBack<ArrayList<Batch>> retrofitCallBack){
-        Call<ArrayList<Batch>>  responseCall =  appAPIInterface.getBatch(branchId);
+    public void getBatches(int branchId, final RetrofitCallBack<ArrayList<Batch>> retrofitCallBack){
+        Call<ArrayList<Batch>>  responseCall =  appAPIInterface.getBatches(branchId);
         responseCall.enqueue(new Callback<ArrayList<Batch>>() {
             @Override
             public void onResponse(Call<ArrayList<Batch>> call, Response<ArrayList<Batch>> response) {

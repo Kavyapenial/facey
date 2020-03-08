@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         takeAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(), AttendenceSelect.class));
+                startActivity(new Intent(getApplication(), AttendanceCaptureActivity.class));
             }
         });
         viewAttendance.setOnClickListener(new View.OnClickListener() {
