@@ -52,7 +52,7 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView  imageView;
-    private AutoCompleteTextView branchAutoCompleteTextView,batchAutoCompleteTextView, subjectAutoCompleteTextView;
+    private AutoCompleteTextView branchAutoCompleteTextView,batchAutoCompleteTextView, subjectAutoCompleteTextView, hourAutoCompleteTextView;
     private TextInputLayout branchTextInputLayout, batchTextInputLayout, subjeTextInputLayout;
     private Button captureButton;
     private LinearLayout loader;
@@ -63,8 +63,9 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
     private ArrayAdapter<String> branchAdapter;
     private ArrayAdapter<String> batchAdapter;
     private ArrayAdapter<String> subjectAdapter;
+    private ArrayAdapter<Integer> hourAdapter;
 
-    private int batchId = 0, subjectId = 0;
+    private int batchId = 0, subjectId = 0, hour = 0;
     private String currentPhotoPath;
     File photoFile = null;
     Uri photoURI;
@@ -81,6 +82,8 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         branchAutoCompleteTextView =  findViewById(R.id.branch);
         batchAutoCompleteTextView =  findViewById(R.id.batch);
         subjectAutoCompleteTextView =  findViewById(R.id.subject);
+        hourAutoCompleteTextView = findViewById(R.id.hour);
+
 
         batchTextInputLayout = findViewById(R.id.batch_container);
         branchTextInputLayout = findViewById(R.id.branch_container);
@@ -91,10 +94,19 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         branchAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
         batchAdapter= new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
         subjectAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
+        hourAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item);
+        hourAdapter.add(1);
+        hourAdapter.add(2);
+        hourAdapter.add(3);
+        hourAdapter.add(4);
+        hourAdapter.add(5);
+        hourAdapter.add(6);
+        hourAdapter.add(7);
 
         branchAutoCompleteTextView.setAdapter(branchAdapter);
         batchAutoCompleteTextView.setAdapter(batchAdapter);
         subjectAutoCompleteTextView.setAdapter(subjectAdapter);
+        hourAutoCompleteTextView.setAdapter(hourAdapter);
 
         batchTextInputLayout.setEnabled(false);
         subjeTextInputLayout.setEnabled(false);
@@ -102,10 +114,10 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(subjectId != 0 && batchId != 0){
-//                    dispatchTakePictureIntent();
-//                }
-                dispatchTakePictureIntent();
+                if(subjectId != 0 && batchId != 0 && hour != 0){
+                    dispatchTakePictureIntent();
+                }else
+                    Toast.makeText(getApplicationContext(), "Please select all the fields", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -141,6 +153,13 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 subjeTextInputLayout.clearFocus();
                 subjectId = subjects.get(position).getId();
+            }
+        });
+
+        hourAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                hour = hourAdapter.getItem(position);
             }
         });
 
@@ -241,8 +260,7 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
             Bitmap myImg = BitmapFactory.decodeFile(currentPhotoPath);
             Log.d("ImageFile", photoFile.getTotalSpace()+"");
             RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), photoFile);
-            RequestBody batch =
-                    RequestBody.create(MediaType.parse("text/plain"), batchId+"");
+            RequestBody batch = RequestBody.create(MediaType.parse("text/plain"), batchId+"");
 
 
             MultipartBody.Part part = MultipartBody.Part.createFormData("capture_image", photoFile.getName(), requestFile);
@@ -251,8 +269,12 @@ public class AttendanceCaptureActivity extends AppCompatActivity {
                 @Override
                 public void Success(StudentResult data) {
                     startActivity(new Intent(AttendanceCaptureActivity.this, AttendanceViewActivity.class)
-                    .putExtra("students", data));
+                    .putExtra("students", data)
+                    .putExtra("batch", batchId)
+                    .putExtra("subject", subjectId)
+                    .putExtra("hour", hour));
                     loader.setVisibility(View.GONE);
+                    finish();
                 }
 
                 @Override

@@ -8,6 +8,7 @@ import com.example.facey.interfaces.RetrofitCallBack;
 import com.example.facey.models.Auth;
 import com.example.facey.models.Batch;
 import com.example.facey.models.Branch;
+import com.example.facey.models.ResponseResult;
 import com.example.facey.models.StudentResult;
 import com.example.facey.models.Subject;
 import com.example.facey.retrofit.AppAPIInterface;
@@ -140,6 +141,23 @@ public class DataManager {
 
             @Override
             public void onFailure(Call<StudentResult> call, Throwable t) {
+                retrofitCallBack.Failure("Something went wrong");
+            }
+        });
+    }
+
+    public void confirmAttendance(HashMap<String, String> params, final RetrofitCallBack<ResponseResult> retrofitCallBack){
+        Call<ResponseResult> responseCall = appAPIInterface.confirmAttendance(params);
+        responseCall.enqueue(new Callback<ResponseResult>() {
+            @Override
+            public void onResponse(Call<ResponseResult> call, Response<ResponseResult> response) {
+                if(response.isSuccessful())
+                    retrofitCallBack.Success(response.body());
+                else
+                    retrofitCallBack.Failure("Something went wrong");
+            }
+            @Override
+            public void onFailure(Call<ResponseResult> call, Throwable t) {
                 retrofitCallBack.Failure("Something went wrong");
             }
         });

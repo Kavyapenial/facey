@@ -3,6 +3,7 @@ package com.example.facey.retrofit;
 import com.example.facey.models.Auth;
 import com.example.facey.models.Batch;
 import com.example.facey.models.Branch;
+import com.example.facey.models.ResponseResult;
 import com.example.facey.models.StudentResult;
 import com.example.facey.models.Subject;
 
@@ -46,5 +47,10 @@ public interface AppAPIInterface {
     @Multipart
     @POST("attendance/upload/")
     Call<StudentResult> uploadPhoto(@Part("batch") RequestBody batch, @Part MultipartBody.Part part);
+
+
+    @FormUrlEncoded()
+    @POST("attendance/confirm/")
+    Call<ResponseResult> confirmAttendance(@FieldMap HashMap<String, String> params);
 
 }
