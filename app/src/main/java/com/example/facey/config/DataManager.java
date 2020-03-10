@@ -8,6 +8,7 @@ import com.example.facey.interfaces.RetrofitCallBack;
 import com.example.facey.models.Auth;
 import com.example.facey.models.Batch;
 import com.example.facey.models.Branch;
+import com.example.facey.models.StudentResult;
 import com.example.facey.models.Subject;
 import com.example.facey.retrofit.AppAPIInterface;
 import com.example.facey.retrofit.AppClient;
@@ -16,6 +17,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -123,6 +127,22 @@ public class DataManager {
         });
     }
 
+    public void getResults(RequestBody batch, MultipartBody.Part photo, final RetrofitCallBack<StudentResult> retrofitCallBack){
+        Call<StudentResult> responseCall = appAPIInterface.uploadPhoto(batch, photo);
+        responseCall.enqueue(new Callback<StudentResult>() {
+            @Override
+            public void onResponse(Call<StudentResult> call, Response<StudentResult> response) {
+                if(response.isSuccessful())
+                    retrofitCallBack.Success(response.body());
+                else
+                    retrofitCallBack.Failure("Something went wrong");
+            }
 
-
+            @Override
+            public void onFailure(Call<StudentResult> call, Throwable t) {
+                retrofitCallBack.Failure("Something went wrong");
+            }
+        });
     }
+
+}

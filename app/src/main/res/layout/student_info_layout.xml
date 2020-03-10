@@ -23,9 +23,9 @@
 
         <ImageView
             android:id="@+id/student_photo"
-            android:layout_width="64dp"
+            android:layout_width="wrap_content"
             android:layout_height="64dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/common_google_signin_btn_icon_light_focused" />
 
@@ -58,7 +58,7 @@
         <CheckBox
             android:id="@+id/radio_checkbox"
             style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-            android:layout_width="31dp"
+            android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:buttonTint="@color/colorPrimaryDark"/>

@@ -13,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.facey.models.Student;
+import com.example.facey.retrofit.AppClient;
 
 import java.util.ArrayList;
 
@@ -56,6 +58,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 studentAdapterInterface.onCheckedChangeListener(student, isChecked);
             }
         });
+        if(student.getProfilePic() != null)
+            Glide.with(mContext).load(AppClient.MASTEERURL+ "media/"+ student.getProfilePic()).placeholder(R.drawable.ic_launcher_foreground).into(holder.studPhoto);
+        if(student.getPrescent())
+            holder.radioButton.setChecked(true);
+        else
+            holder.radioButton.setChecked(false);
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.example.facey.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     @SerializedName("id")
     int id;
 
@@ -10,12 +12,16 @@ public class Student {
     String name;
 
 
-    @SerializedName("credit")
+    @SerializedName("reg_id")
     int regId;
 
 
     @SerializedName("profile")
     String profilePic;
+
+
+    @SerializedName("is_present")
+    Boolean isPrescent;
 
     public int getId(){return  id;}
     public void setId(int id){this.id = id;}
@@ -28,4 +34,12 @@ public class Student {
 
     public String getProfilePic(){return  profilePic;}
     public void setProfilePic(String profilePic){this.profilePic =  profilePic;}
+
+    public Boolean getPrescent() {
+        return isPrescent;
+    }
+
+    public void setPrescent(Boolean prescent) {
+        isPrescent = prescent;
+    }
 }

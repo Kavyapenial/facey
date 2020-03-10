@@ -3,17 +3,22 @@ package com.example.facey.retrofit;
 import com.example.facey.models.Auth;
 import com.example.facey.models.Batch;
 import com.example.facey.models.Branch;
+import com.example.facey.models.StudentResult;
 import com.example.facey.models.Subject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface AppAPIInterface {
@@ -27,8 +32,6 @@ public interface AppAPIInterface {
     Call<Auth> verifyUser(@FieldMap HashMap<String, String> params);
 
 
-
-
     @GET("college/branchs/")
     Call<ArrayList<Branch>> getBranches();
 
@@ -39,5 +42,9 @@ public interface AppAPIInterface {
 
     @GET("college/subjects/{branchId}")
     Call<ArrayList<Subject>> getSubjects(@Path("branchId") int branchId);
+
+    @Multipart
+    @POST("attendance/upload/")
+    Call<StudentResult> uploadPhoto(@Part("batch") RequestBody batch, @Part MultipartBody.Part part);
 
 }
