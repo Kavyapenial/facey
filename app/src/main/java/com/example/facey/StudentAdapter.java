@@ -59,7 +59,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             }
         });
         if(student.getProfilePic() != null)
-            Glide.with(mContext).load(AppClient.MASTEERURL+ "media/"+ student.getProfilePic()).placeholder(R.drawable.ic_launcher_foreground).into(holder.studPhoto);
+            Glide.with(mContext).load("http://192.168.1.5:8000/"+ "media/"+ student.getProfilePic()).placeholder(R.drawable.ic_launcher_foreground).into(holder.studPhoto);
         if(student.getPrescent())
             holder.radioButton.setChecked(true);
         else
